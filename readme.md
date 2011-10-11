@@ -3,7 +3,7 @@
 ## What is UserAgentCheck ?
 
 UserAgentCheck provides an easy way to notify users when their browser is outdated. It displays a non disruptive banner at the top of the page and drives the user to a page where he/she may download an upgrade.
-Optionally, can block access to a browser if the version is older than the required one, e.g., html5 features needed.
+Optionally, it can block access to a browser if the version is older than the required one, e.g., html5 features needed.
 
 ![screenshot](https://github.com/orefalo/useragentcheck/raw/master/screenshot.png)
 
@@ -18,9 +18,8 @@ To avoid redoing the same process on every request, it then stores the result in
 
 ### Configuration
 
-By using properties in `conf/application.conf` the developer has full control over when whether the banner should display or the blocking page.
+By setting properties in `conf/application.conf` the developer can control when the warning banner should display.
 
-    useragentcheck.block = false
     useragentcheck.minInternetExplorerVersion = 7
     useragentcheck.minOperaVersion = 10
     useragentcheck.minFirefoxVersion = 5
@@ -28,13 +27,19 @@ By using properties in `conf/application.conf` the developer has full control ov
     useragentcheck.minSafariVersion = 5
 
 With the sample lines above, the banner will show if you use IE6 or prior, Opera 9 or prior ...etc
-If you wish to block your web app, set useragentcheck.block = true
+
+By default, useragentcheck display a non disruptive banner. You may change this behavior by setting the following property:
+
+    useragentcheck.block = true
+
+In blocking mode, the user is redirected to an upgrade page where he can pick fro a selection of upgrades
+
 
 ### Tag
 
 You should include the `useragentcheck` tag somewhere in your template. Preferable right at the top of the html body.
 
-    …    
+    ...   
     <body>
     #{useragentcheck /}
     #{doLayout /}
@@ -63,7 +68,17 @@ If you want to customize Block Template, invoke the following command:
 
 ## Sample application
 
-two sample demos are part of the distribution
+Two sample demos are part of the distribution.  
+
+Process as follows in order to run them.
+
+1. cd to **useragentcheck**
+2. run `play dependencies .`
+3. run `play build-module .`
+4. cd to **samples-and-tests**
+5. run `play depenencies demo-blocking` and `play depenencies demo-banner`
+6. finally run the demo of your choice with `play run demo-xxx` and open a blowser on `http://localhost:9000`
+
 
 ## Credits
 
