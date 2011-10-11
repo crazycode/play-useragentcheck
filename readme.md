@@ -32,7 +32,7 @@ By default, useragentcheck display a non disruptive banner. You may change this 
 
     useragentcheck.block = true
 
-In blocking mode, the user is redirected to an upgrade page where he can pick fro a selection of upgrades
+In blocking mode, the user is redirected to an upgrade page where he/she can pick from a selection of upgrades.
 
 
 ### Tag
