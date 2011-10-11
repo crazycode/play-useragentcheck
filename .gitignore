@@ -2,9 +2,10 @@
 /dist/
 *.class
 *.swp
+*.pyc
 *.log
 /lib/*
-/tmp/*
+tmp/
 /modules/*
 /samples-and-tests/demo/modules/*
 /.project
