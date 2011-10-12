@@ -20,7 +20,7 @@ To avoid redoing the same process on every request, it then stores the result in
 
 By setting properties in `conf/application.conf` the developer can control when the warning banner should display.
 
-    useragentcheck.minInternetExplorerVersion = 7
+    useragentcheck.minInternetexplorerVersion = 7
     useragentcheck.minOperaVersion = 10
     useragentcheck.minFirefoxVersion = 5
     useragentcheck.minChromeVersion = 13
@@ -58,7 +58,7 @@ The banner text and url may be configured using the standard `conf/messages` fil
 If you're planning to use the Blocking feature, add the following route in `conf/routes`
 
     # Import the default UserAgentCheck routes
-    *	${ctx}/	module:useragentcheck
+    *	/	module:useragentcheck
 
 ### Override Block Template
 
