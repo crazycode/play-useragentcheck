@@ -3,7 +3,7 @@ uc = session.get("uc");
 if(uc=="0") {
 	displayBanner = false;
 } else {
-    displayBanner = uc=="1" || play.modules.useragentcheck.UserAgentCheck.displayBanner(request.headers.get("user-agent").value());
+    displayBanner = uc=="1" || play.modules.useragentcheck.UserAgentCheck.displayBanner(request.headers.get("user-agent")?.value());
     session.put("uc",displayBanner?"1":"0");
 }
 }%
