@@ -172,7 +172,7 @@ public class OperatingSystemTest {
 	};
 	
 	String[] windows98 = { 
-			"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Rogers Hiï¿½Speed Internet; (R1 1.3))",
+			"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Rogers HiáSpeed Internet; (R1 1.3))",
 			"Mozilla/5.0 (Windows; U; Win98; en-US; rv:1.8b3) Gecko/20050713 SeaMonkey/1.0a"
 	};	
 	
@@ -260,7 +260,7 @@ public class OperatingSystemTest {
 	}
 
 	/**
-	 * Test method for {@link nl.bitwalker.useragentutils.OperatingSystem#valueOf(short)}
+	 * Test method for {@link nl.bitwalker.useragentutils.OperatingSystem#valueOf(short)} 
 	 */
 	@Test
 	public void testValueOf() {
@@ -278,7 +278,7 @@ public class OperatingSystemTest {
 	}
 	
 	/**
-	 * Test method for {@link nl.bitwalker.useragentutils.OperatingSystem#valueOf(String)}
+	 * Test method for {@link nl.bitwalker.useragentutils.OperatingSystem#valueOf(String)} 
 	 */
 	@Test
 	public void testValueOfString() {
