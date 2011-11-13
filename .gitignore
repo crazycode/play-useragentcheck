@@ -5,6 +5,7 @@
 *.pyc
 *.log
 /lib/*
+!/lib/readme.txt
 tmp/
 /modules/*
 /samples-and-tests/demo/modules/*
