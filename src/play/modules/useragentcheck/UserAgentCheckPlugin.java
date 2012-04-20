@@ -59,6 +59,9 @@ public class UserAgentCheckPlugin extends PlayPlugin {
 
         Http.Request request = Http.Request.current();
 
+        if(request.headers.get("user-agent") == null)
+            return;
+        
         String agent = request.headers.get("user-agent").value();
         boolean acceptableAgent = UserAgentCheck.check(agent);
         Logger.debug("acceptable user-agent: %b", acceptableAgent);
