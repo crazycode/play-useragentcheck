@@ -50,13 +50,23 @@ import java.util.regex.Pattern;
 
 public enum Browser {
 
-	OPERA(			Manufacturer.OPERA, null, 1, "Opera", new String[] { "Opera" }, null, BrowserType.WEB_BROWSER, RenderingEngine.PRESTO, "Opera\\/(([\\d]+)\\.([\\w]+))"),   // before MSIE
-	OPERA_MINI(		Manufacturer.OPERA, Browser.OPERA, 20, "Opera Mini", new String[] { "Opera Mini"}, null, BrowserType.MOBILE_BROWSER, RenderingEngine.PRESTO, null), // Opera for mobile devices
+
+    OPERA_CURRENT(Manufacturer.OPERA, null, 10, "Opera", new String[] { "Opera/9.8" }, null,
+            BrowserType.WEB_BROWSER, RenderingEngine.PRESTO, "Version\\/(([\\d]+)\\.([\\w]+))"),
+
+    OPERA(Manufacturer.OPERA, null, 1, "Opera", new String[] { "Opera/" }, null,
+            BrowserType.WEB_BROWSER, RenderingEngine.PRESTO, "Opera\\/(([\\d]+)\\.([\\w]+))"),   // before MSIE
+
+    OPERA_B(Manufacturer.OPERA, Browser.OPERA, 5, "Opera", new String[] { "Opera " }, null,
+            BrowserType.WEB_BROWSER, RenderingEngine.PRESTO, "Opera (([\\d]+)\\.([\\w]+))"),
+
+	OPERA_MINI(		Manufacturer.OPERA, Browser.OPERA, 20, "Opera Mini", new String[] { "Opera Mini"}, null,
+            BrowserType.MOBILE_BROWSER, RenderingEngine.PRESTO, null), // Opera for mobile devices
 	/**
 	 * For some strange reason Opera uses 9.80 in the user-agent string.
 	 */
-	OPERA10(		Manufacturer.OPERA, Browser.OPERA, 10, "Opera 10", new String[] { "Opera/9.8" }, null, BrowserType.WEB_BROWSER, RenderingEngine.PRESTO, "Version\\/(([\\d]+)\\.([\\w]+))"),  
-	OPERA9(			Manufacturer.OPERA, Browser.OPERA, 5, "Opera 9", new String[] { "Opera/9" }, null, BrowserType.WEB_BROWSER, RenderingEngine.PRESTO, null),  
+//	OPERA_CURRENT(		Manufacturer.OPERA, Browser.OPERA, 10, "Opera 10", new String[] { "Opera/9.8" }, null, BrowserType.WEB_BROWSER, RenderingEngine.PRESTO, "Version\\/(([\\d]+)\\.([\\w]+))"),
+//	OPERA9(			Manufacturer.OPERA, Browser.OPERA, 5, "Opera 9", new String[] { "Opera/9" }, null, BrowserType.WEB_BROWSER, RenderingEngine.PRESTO, null),
 	KONQUEROR(		Manufacturer.OTHER, null, 1, "Konqueror", new String[] { "Konqueror"}, null, BrowserType.WEB_BROWSER, RenderingEngine.KHTML, "Konqueror\\/(([0-9]+)\\.?([\\w]+)?(-[\\w]+)?)" ),  
 
 	/**
@@ -178,7 +188,10 @@ public enum Browser {
 	private List<Browser> children;
 	private Pattern versionRegEx;
 	
-	private Browser(Manufacturer manufacturer, Browser parent, int versionId, String name, String[] aliases, String[] exclude, BrowserType browserType, RenderingEngine renderingEngine, String versionRegexString) {
+	private Browser(Manufacturer manufacturer, Browser parent, int versionId, String name, String[] aliases,
+                    String[] exclude, BrowserType browserType, RenderingEngine renderingEngine,
+                    String versionRegexString) {
+
 		this.id =  (short) ( ( manufacturer.getId() << 8) + (byte) versionId);
 		this.name = name;
 		this.parent = parent;
@@ -274,7 +287,7 @@ public enum Browser {
 	{
 		for (String alias : aliases)
 		{
-			if (agentString.toLowerCase().indexOf(alias.toLowerCase()) != -1)
+			if (agentString.toLowerCase().contains(alias.toLowerCase()))
 				return true;
 		}
 		return false;
@@ -290,7 +303,7 @@ public enum Browser {
 	{
 		if (excludeList != null) {
 			for (String exclude : excludeList) {
-				if (agentString.toLowerCase().indexOf(exclude.toLowerCase()) != -1)
+				if (agentString.toLowerCase().contains(exclude.toLowerCase()))
 					return true;
 			}
 		}
@@ -299,7 +312,7 @@ public enum Browser {
 	
 	private Browser checkUserAgent(String agentString) {
 		if (this.isInUserAgentString(agentString)) {
-			if (this.children.size() > 0) {
+			if (!this.children.isEmpty()) {
 				for (Browser childBrowser : this.children) {
 					Browser match = childBrowser.checkUserAgent(agentString);
 					if (match != null) { 

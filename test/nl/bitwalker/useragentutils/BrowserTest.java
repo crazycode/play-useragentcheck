@@ -377,7 +377,7 @@ public class BrowserTest {
 		testAgents(operaMini, Browser.OPERA_MINI);
 		testAgents(opera9, Browser.OPERA9);
 		testAgents(opera, Browser.OPERA);
-		testAgents(opera10, Browser.OPERA10);
+		testAgents(opera10, Browser.OPERA_CURRENT);
 		testAgents(camino2, Browser.CAMINO2);
 		testAgents(flock, Browser.FLOCK);
 		testAgents(seaMonkey, Browser.SEAMONKEY);
