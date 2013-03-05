@@ -1,5 +1,9 @@
 package play.modules.useragentcheck;
 
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.Arrays;
+
 import nl.bitwalker.useragentutils.Browser;
 import nl.bitwalker.useragentutils.UserAgent;
 import play.Logger;
@@ -43,13 +47,29 @@ public class UserAgentCheck {
 						|| checkAgainst(browserGroupName, SAFARI, majorVersion)
 						|| checkAgainst(browserGroupName, OPERA, majorVersion);
 			}
+
+			acceptableAgent |= !Arrays.asList(INTERNET_EXPLORER, FIREFOX, CHROME, SAFARI, OPERA)
+                    .contains(browserGroupName) && acceptOther();
+
 			Logger.debug("UserAgentCheck acceptable=%s", acceptableAgent);
 			return acceptableAgent;
 		} catch (Exception e) {
 			Logger.warn("UserAgentCheck cannot be parserd %s", e);
-			return false;
+			return acceptOther();
 		}
 	}
+
+
+    private static boolean acceptOther() {
+
+        final String acceptString = Play.configuration.getProperty("useragentcheck.acceptOther");
+
+        final boolean result = acceptString != null && Boolean.parseBoolean(acceptString.trim());
+
+        Logger.debug("Can accept other: %s", result);
+
+        return result;
+    }
 
     public static boolean displayBanner(String agent) {
         boolean displayBannerFlag = !check(agent);  // If agent is acceptable, DO NOT show 'Banner'
