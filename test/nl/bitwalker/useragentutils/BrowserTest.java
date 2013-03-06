@@ -375,7 +375,7 @@ public class BrowserTest {
 		testAgents(appleMail, Browser.APPLE_MAIL);
 		testAgents(omniWeb, Browser.OMNIWEB);
 		testAgents(operaMini, Browser.OPERA_MINI);
-		testAgents(opera9, Browser.OPERA9);
+		testAgents(opera9, Browser.OPERA);
 		testAgents(opera, Browser.OPERA);
 		testAgents(opera10, Browser.OPERA_CURRENT);
 		testAgents(camino2, Browser.CAMINO2);

@@ -34,6 +34,12 @@ By default, useragentcheck display a non disruptive banner. You may change this 
 
 In blocking mode, the user is redirected to an upgrade page where he/she can pick from a selection of upgrades.
 
+You can allow other agents show your pages without banner or redirect by setting acceptOther property:
+
+    useragentcheck.acceptOther = true
+
+For example if you set `useragentcheck.block = true`, google-bot will be redirected and description in google search will contains `/agent` page.
+If you set `useragentcheck.acceptOther = true` bots can use your pages content.
 
 ### Tag
 
