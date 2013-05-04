@@ -2,6 +2,7 @@
 /dist/
 *.class
 *.swp
+*.iml
 *.pyc
 *.log
 /lib/*
