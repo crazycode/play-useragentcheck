@@ -1,14 +1,12 @@
 package play.modules.useragentcheck;
 
-import java.lang.Boolean;
-import java.lang.String;
-import java.util.Arrays;
-
 import nl.bitwalker.useragentutils.Browser;
 import nl.bitwalker.useragentutils.UserAgent;
+import nl.bitwalker.useragentutils.Version;
 import play.Logger;
 import play.Play;
-import nl.bitwalker.useragentutils.Version;
+
+import java.util.Arrays;
 
 public class UserAgentCheck {
 
@@ -19,6 +17,10 @@ public class UserAgentCheck {
 	private static final String SAFARI = "Safari";
 
 	public static boolean check(String agent) {
+
+        if (Play.runingInTestMode()) {
+            return true;
+        }
 
 		Logger.debug("UserAgentCheck agent=%s",agent);
 
