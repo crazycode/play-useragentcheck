@@ -63,6 +63,12 @@ public enum RenderingEngine {
 	 * Proprietary layout engine by Opera Software ASA
 	 */
 	PRESTO("Presto"),
+
+    /**
+     * Google Chrome for iOS
+     */
+    APPLIEWEBKIT("AppleWebKit"),
+
 	/**
 	 * Original layout engine of the Mozilla browser and related products. Predecessor of Gecko.
 	 */

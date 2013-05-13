@@ -1,4 +1,4 @@
-self: play -> useragentcheck 0.5.2
+self: play -> useragentcheck 0.5.3
 
 require:
     - play

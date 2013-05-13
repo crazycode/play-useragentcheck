@@ -3,9 +3,9 @@
  */
 package nl.bitwalker.useragentutils;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author harald
@@ -51,5 +51,21 @@ public class UserAgentTest {
 		UserAgent retrievedUserAgent = UserAgent.valueOf(userAgent.toString());
 		assertEquals(userAgent, retrievedUserAgent);
 	}
-	
+
+    @Test
+    public void testParseUserAgentStringForChromeIOS() {
+        UserAgent userAgent = UserAgent.parseUserAgentString("Mozilla/5.0 (iPad; CPU OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/26.0.1410.53 Mobile/10B329 Safari/8536.25");
+        assertEquals(OperatingSystem.MAC_OS_X_IPAD, userAgent.getOperatingSystem());
+        assertEquals(BrowserType.MOBILE_BROWSER, userAgent.getBrowser().getBrowserType());
+        assertEquals(Browser.MOBILE_SAFARI, userAgent.getBrowser());
+    }
+
+    @Test
+    public void testParseUserAgentStringForSamsungAndriod() {
+        UserAgent userAgent = UserAgent.parseUserAgentString("Mozilla/5.0 (Linux; U; Android 2.3.6; zh-cn; SCH-I699 Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1");
+        assertEquals(BrowserType.MOBILE_BROWSER, userAgent.getBrowser().getBrowserType());
+        assertEquals(OperatingSystem.ANDROID2, userAgent.getOperatingSystem());
+        assertEquals(Browser.MOBILE_SAFARI, userAgent.getBrowser());
+    }
+
 }
